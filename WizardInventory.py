@@ -35,4 +35,9 @@ def ShowGameItems(game_items):
 def ShowPlayerInventory(player_inventory):
  for i, items in enumerate(player_inventory, start=1):
   print(i, items)
+
+def SaveInventory(player_inventory):
+ with open("wizard_inventory.txt") as file:
+  for items in player_inventory:
+   file.write(f"{items}\n")
 main()
