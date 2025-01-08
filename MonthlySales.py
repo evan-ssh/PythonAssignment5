@@ -1,8 +1,11 @@
 import csv
 def main():
- sales_data = LoadSales()
- for key, value in sales_data.items():
-  print(f"{key},{value}")
+ while True: 
+  sales_data = LoadSales()
+  DisplayMenu()
+  command = input("Enter a command:").lower()
+  if command == "monthly":
+   ListSales(sales_data)
  
 def DisplayMenu():
  print("COMMAND MENU")
@@ -27,5 +30,9 @@ def LoadSales(filename = "monthly_sales.csv"):
    print(f"An error occured while loading the file: {e}")
 
   return sales_data
+
+def ListSales(sales_data):
+ for key, value in sales_data.items():
+  print(f"{key}-{value}")
 
 main()
