@@ -1,16 +1,39 @@
+import random
 def main():
  while True:
   game_items = ReadGameItems()
   player_inventory = ReadPlayerInventory()
   DisplayCommands()
-  command = input("Enter a command: ")
-  if command == "1":
-    pass
-  elif command == "2":
+  try:
+   command = int(input("Enter a command: "))
+   if command == 1:
+    Walk(player_inventory, game_items)
+   elif command == 2:
     ShowPlayerInventory(player_inventory)
-  elif command == "3":
+   elif command == 3:
     DropItem(player_inventory)
+   elif command == 4:
+    return False
+  except ValueError:
+   print("Enter a vaild number (1-4)")
 
+def Walk(player_inventory, game_items):
+ while True:
+  items_not_equipped = [item for item in game_items if not item in player_inventory]#create a list of items not in player inventory
+  item = random.choice(items_not_equipped)
+  print(f"While walking down a path, you see a {item}")
+  pick_item = input("Do you want to pick it up (y/n)?")
+  if len(player_inventory) > 4:
+   print("You cant carry anymore items, Drop something first")
+   break
+  if pick_item == "y" and len(player_inventory) < 4:
+   player_inventory.append(item)
+   print(f"{item} was added to your inventory")
+   SaveInventory(player_inventory)
+   break
+  else:
+   print("Item was left behind")
+   break
 
 def ReadGameItems():
  game_items = []
@@ -37,7 +60,7 @@ def ReadPlayerInventory():
 
 def ShowPlayerInventory(player_inventory):
  for i, items in enumerate(player_inventory):
-  print(i, items)
+  print(i+1, items)
 
 def SaveInventory(player_inventory):
  with open("wizard_inventory.txt") as file:
