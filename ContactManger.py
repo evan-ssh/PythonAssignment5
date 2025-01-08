@@ -15,7 +15,13 @@ def SaveContacts(contacts):
   writer = csv.writer(file)
   writer.writerows(contacts)
 
-
+def AddContacts(contacts):
+ name = input("Name:")
+ email = input("Email: ")
+ phone = input("Phone#:")
+ contact = [name, email, phone]
+ contacts.append(contact)
+ SaveContacts(contacts)
 
 def DisplayMenu():
  print()
