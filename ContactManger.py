@@ -1,3 +1,17 @@
+import csv
+def main():
+ contacts = ReadContacts()
+
+def ReadContacts():
+ contacts = []
+ with open("contacts.csv") as file:
+  reader = csv.reader(file)
+  for row in reader:
+   contacts.append(row)
+ return contacts
+
+
+
 def DisplayMenu():
  print()
  print("1 - Display all contacts")
@@ -6,4 +20,3 @@ def DisplayMenu():
  print("4 - Delete a contact")
  print("5 - Exit program")
 
- 
