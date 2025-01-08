@@ -6,6 +6,8 @@ def main():
   command = input("Enter a command:").lower()
   if command == "monthly":
    ListSales(sales_data)
+  elif command == "yearly":
+   YearlySummary(sales_data)
  
 def DisplayMenu():
  print("COMMAND MENU")
@@ -35,4 +37,10 @@ def ListSales(sales_data):
  for key, value in sales_data.items():
   print(f"{key}-{value}")
 
+def YearlySummary(sales_data):
+ print(f"{'Yearly Summary'}")
+ value = sum(sales_data.values())
+ average = value / len(sales_data)
+ print(f"Yearly Total: {value}")
+ print(f"Monthly: {average:.2f}")
 main()
