@@ -10,6 +10,11 @@ def ReadContacts():
    contacts.append(row)
  return contacts
 
+def SaveContacts(contacts):
+ with open("contacts.csv") as file:
+  writer = csv.writer(file)
+  writer.writerows(contacts)
+
 
 
 def DisplayMenu():
