@@ -8,6 +8,8 @@ def main():
    ListSales(sales_data)
   elif command == "yearly":
    YearlySummary(sales_data)
+  elif command == "edit":
+   EditSales(sales_data)
  
 def DisplayMenu():
  print("COMMAND MENU")
@@ -43,4 +45,20 @@ def YearlySummary(sales_data):
  average = value / len(sales_data)
  print(f"Yearly Total: {value}")
  print(f"Monthly: {average:.2f}")
+
+def EditSales(sales_data):
+ while True:
+  print(f"{'Months':>30}")
+  print(f"{'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec':1}", end=" ")
+  print()
+  edit_month = input("Enter the abbreviaton of the month you'd like to edit: ").title()
+  if edit_month == "X":
+   break
+  elif edit_month in sales_data:
+    new_sales = float(input(f"Enter new $ the sales for the month of {edit_month}:"))
+    sales_data[edit_month] = new_sales
+    print(f"Sales amount for {edit_month} was updated")
+  else:
+    print("Enter a vaild abbreviation for the month you'd like to edit: ")
+    continue 
 main()
