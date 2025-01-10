@@ -3,15 +3,12 @@ def main():
  contacts = ReadContacts()
 
 def ReadContacts():
- contacts = {}
+ contacts = []
  with open("contacts.csv") as file:
-  reader = csv.reader(file)
+  reader = csv.DictReader(file)
   for row in reader:
-   name = row[0]
-   email = row[1]
-   phone = row[2]
-   print(name,email,phone)
- return contacts
+   contacts.append(row)  
+  return contacts
 
 def ShowContacts(contacts):
  for name, contact in contacts:
