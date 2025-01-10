@@ -3,12 +3,19 @@ def main():
  contacts = ReadContacts()
 
 def ReadContacts():
- contacts = []
+ contacts = {}
  with open("contacts.csv") as file:
   reader = csv.reader(file)
   for row in reader:
-   contacts.append(row)
+   name = row[0]
+   email = row[1]
+   phone = row[2]
+   print(name,email,phone)
  return contacts
+
+def ShowContacts(contacts):
+ for name, contact in contacts:
+   print(f"{name}")
 
 def SaveContacts(contacts):
  with open("contacts.csv") as file:
@@ -31,3 +38,4 @@ def DisplayMenu():
  print("4 - Delete a contact")
  print("5 - Exit program")
 
+main()
