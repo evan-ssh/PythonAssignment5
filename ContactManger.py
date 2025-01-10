@@ -28,8 +28,10 @@ def ListContacts(contacts):
    print(f" Phone: {contact['phone']}")
 
 def SaveContacts(contacts):
- with open("contacts.csv") as file:
-  writer = csv.writer(file)
+ with open("contacts.csv", "w", newline="") as file:
+  fieldnames = ['name','email', 'phone']
+  writer = csv.DictWriter(file, fieldnames=fieldnames)
+  writer.writeheader()
   writer.writerows(contacts)
 
 def AddContacts(contacts):
@@ -38,7 +40,7 @@ def AddContacts(contacts):
  phone = input("Phone#:")
  contact = {'name': name, 'email': email, 'phone': phone}
  contacts.append(contact)
- #SaveContacts(contacts)
+ SaveContacts(contacts)
 
 def DisplayMenu():
  print()
