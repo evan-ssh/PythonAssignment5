@@ -1,18 +1,31 @@
 import csv
 def main():
  contacts = ReadContacts()
-
+ DisplayMenu()
+ while True:
+  try: 
+   command = int(input("Command:"))
+   if command == 1:
+    ListContacts(contacts)
+   elif command == 2:
+    pass
+    
+  except ValueError:
+   print("Invalid command. Please enter a number.")
+   continue
 def ReadContacts():
  contacts = []
  with open("contacts.csv") as file:
   reader = csv.DictReader(file)
   for row in reader:
    contacts.append(row)  
-  return contacts
+ return contacts
 
-def ShowContacts(contacts):
- for name, contact in contacts:
-   print(f"{name}")
+def ListContacts(contacts):
+ for i, contact in enumerate(contacts, start=1):
+   print(f"{i}. Name: {contact['name']}")
+   print(f" Email: {contact['email']}")
+   print(f" Phone: {contact['phone']}")
 
 def SaveContacts(contacts):
  with open("contacts.csv") as file:
