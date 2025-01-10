@@ -8,7 +8,7 @@ def main():
    if command == 1:
     ListContacts(contacts)
    elif command == 2:
-    pass
+    AddContacts(contacts)
     
   except ValueError:
    print("Invalid command. Please enter a number.")
@@ -36,9 +36,9 @@ def AddContacts(contacts):
  name = input("Name:")
  email = input("Email: ")
  phone = input("Phone#:")
- contact = [name, email, phone]
+ contact = {'name': name, 'email': email, 'phone': phone}
  contacts.append(contact)
- SaveContacts(contacts)
+ #SaveContacts(contacts)
 
 def DisplayMenu():
  print()
