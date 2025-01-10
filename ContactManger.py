@@ -9,6 +9,8 @@ def main():
     ListContacts(contacts)
    elif command == 2:
     AddContacts(contacts)
+   elif command == 3:
+    DeleteContact(contacts)
     
   except ValueError:
    print("Invalid command. Please enter a number.")
@@ -42,6 +44,18 @@ def AddContacts(contacts):
  contacts.append(contact)
  SaveContacts(contacts)
 
+def DeleteContact(contacts):
+ while True:
+  ListContacts(contacts)
+  user_input = int(input("Enter the number of the contact youd like to delete"))
+  if user_input < 1 or user_input > len(contacts):
+   print("Invaild contact number.")
+   continue
+  else:
+   contact = contacts.pop(user_input - 1)
+   SaveContacts(contacts)
+   print(f"{contact['name']} was deleted from the contacts list.")
+   break
 def DisplayMenu():
  print()
  print("1 - Display all contacts")
