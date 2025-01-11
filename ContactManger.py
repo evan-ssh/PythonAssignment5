@@ -8,13 +8,19 @@ def main():
    if command == 1:
     ListContacts(contacts)
    elif command == 2:
-    AddContacts(contacts)
+    ViewContacts(contacts) 
    elif command == 3:
+    AddContacts(contacts)
+   
+   elif command == 4:
     DeleteContact(contacts)
-    
+   elif command == 5:
+    return False
   except ValueError:
    print("Invalid command. Please enter a number.")
    continue
+
+
 def ReadContacts():
  contacts = []
  with open("contacts.csv") as file:
@@ -28,6 +34,10 @@ def ListContacts(contacts):
    print(f"{i}. Name: {contact['name']}")
    print(f" Email: {contact['email']}")
    print(f" Phone: {contact['phone']}")
+
+def ListNames(contacts):
+  for i, contact in enumerate(contacts, start=1):
+    print(f"{i}. {contact['name']}")
 
 def SaveContacts(contacts):
  with open("contacts.csv", "w", newline="") as file:
@@ -56,6 +66,24 @@ def DeleteContact(contacts):
    SaveContacts(contacts)
    print(f"{contact['name']} was deleted from the contacts list.")
    break
+
+def ViewContacts(contacts):
+ ListNames(contacts)
+ while True: 
+  name = input("Enter the name of the contact you'd like to view('Press x to cancel viewing)").lower()
+ 
+  if name == "x":
+   print("Viewing of contacts was cancelled")
+   break
+  
+  for contact in contacts:
+   if contact['name'].lower().strip() == name:
+    print(f"Name: {contact['name']}")
+    print(f"Email: {contact['email']}")
+    print(f"Phone: {contact['phone']}")
+   
+
+
 def DisplayMenu():
  print()
  print("1 - Display all contacts")
