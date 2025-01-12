@@ -12,11 +12,15 @@ def main():
    EditSales(sales_data)
   elif command == 4:
    ViewSingleMonth(sales_data)
+  elif command == 5:
+   HighestEarnings(sales_data)
 def DisplayMenu():
  print("COMMAND MENU")
  print("1 - View monthly sales")
  print("2 - View yearly summary")
  print("3 - Edit sales for a month")
+ print("4 - View a single month")
+ print("5 - View Best Month")
  print(" - Exit program")
 
 def LoadSales(filename = "monthly_sales.csv"):
@@ -91,4 +95,10 @@ def ViewSingleMonth(sales_data):
   else:
    print("Invaild month('Enter The Abbreviation')")
    continue
+
+def HighestEarnings(sales_data):
+ highest_sale = max([row['sales'] for row in sales_data])
+ highest_month = [row['month'] for row in sales_data]
+ for month in highest_month:
+  print(f"\n{month} is the best performing month with a total of ${highest_sale}")
 main()
