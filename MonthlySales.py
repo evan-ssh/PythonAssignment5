@@ -73,9 +73,9 @@ def EditSales(sales_data):
     WriteSales(sales_data)
     print(f"Sales amount for {edit_month} was updated")
     break
-   else:
-     print("Enter a valid abbreviation for the month you'd like to edit: ")
-     break 
+  else:
+   print("Enter a valid abbreviation for the month you'd like to edit: ")
+   continue 
    
 def ViewSingleMonth(sales_data):
  while True:
@@ -88,7 +88,7 @@ def ViewSingleMonth(sales_data):
    if month['month'] == view_month:
     print(f"\nSales for the month of {view_month} is ${month['sales']}")
     break
-   else:
-    print("Invaild month('Enter The Abbreviation')")
-    break
+  else:
+   print("Invaild month('Enter The Abbreviation')")
+   continue
 main()
