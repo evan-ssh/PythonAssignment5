@@ -45,7 +45,7 @@ def ListSales(sales_data):
 def ShowMonths(sales_data):
   print(f"{'month':>26}")
   for row in sales_data:
-    print(f"{row['month']}", end="")
+    print(f"{row['month']}", end=" ")
   print()
 
 def YearlySummary(sales_data):
@@ -59,17 +59,20 @@ def YearlySummary(sales_data):
 
 def EditSales(sales_data):
  while True:
-  print(f"{'Months':>30}")
-  print(f"{'Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec':1}", end=" ")
-  print()
+  print("Editing sales data\n")
+  ShowMonths(sales_data)
   edit_month = input("Enter the abbreviaton of the month you'd like to edit: ").title()
   if edit_month == "X":
    break
-  elif edit_month in sales_data:
-    new_sales = float(input(f"Enter new $ the sales for the month of {edit_month}:"))
-    sales_data[edit_month] = new_sales
+
+  for month in sales_data:
+   if month['month'] == edit_month:
+    new_sales_amount = float(input(f"Enter new $ the sales for the month of {edit_month}:"))
+    month['sales'] = new_sales_amount
+    WriteSales(sales_data)
     print(f"Sales amount for {edit_month} was updated")
-  else:
-    print("Enter a vaild abbreviation for the month you'd like to edit: ")
-    continue 
+    break
+   else:
+     print("Enter a valid abbreviation for the month you'd like to edit: ")
+     break 
 main()
