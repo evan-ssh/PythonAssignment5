@@ -3,20 +3,20 @@ def main():
  while True: 
   sales_data = LoadSales()
   DisplayMenu()
-  command = input("Enter a command:").lower()
-  if command == "monthly":
+  command = int(input("Enter a command:"))
+  if command == 1:
    ListSales(sales_data)
-  elif command == "yearly":
+  elif command == 2:
    YearlySummary(sales_data)
-  elif command == "edit":
+  elif command == 3:
    EditSales(sales_data)
  
 def DisplayMenu():
  print("COMMAND MENU")
- print("Monthly - View monthly sales")
- print("Yearly - View yearly summary")
- print("Edit - Edit sales for a month")
- print("Exit - Exit program")
+ print("1 - View monthly sales")
+ print("2 - View yearly summary")
+ print("3 - Edit sales for a month")
+ print(" - Exit program")
 
 def LoadSales(filename = "monthly_sales.csv"):
   sales_data = []
@@ -31,10 +31,21 @@ def LoadSales(filename = "monthly_sales.csv"):
   except Exception as e:
    print(f"An error occured while loading the file: {e}")
   return sales_data
+ 
+def WriteSales(sales_data):
+  with open("monthly_sales.csv", "w", newline="") as file:
+   writer = csv.DictWriter(file, fieldnames=['month','sales'])
+   writer.writeheader()
+   writer.writerows(sales_data)
 
 def ListSales(sales_data):
  for row in sales_data:
   print(f"{row['month']}-{row['sales']}")
+
+def ShowMonths(sales_data):
+  for row in sales_data:
+    print(f"{row['month']}", end="")
+  print()
 
 def YearlySummary(sales_data):
  print(f"{'Yearly Summary'}")
