@@ -19,15 +19,13 @@ def DisplayMenu():
  print("Exit - Exit program")
 
 def LoadSales(filename = "monthly_sales.csv"):
-  sales_data = {}
+  sales_data = []
   try:
    with open(filename, mode="r", newline="") as file:
-    reader = csv.reader(file, quotechar='"')
+    reader = csv.DictReader(file)
     for row in reader:
-     month = row[0].strip()
-     sales = round(float(row[1].strip()), 2)
-     sales_data[month] = sales
-    sales_data[row[0].strip()] = 0
+     row['sales'] = float(row['sales'])
+     sales_data.append(row)
   except FileNotFoundError:
    print(f"File wasn't found check the programs directory")
   except Exception as e:

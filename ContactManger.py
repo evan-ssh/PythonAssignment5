@@ -11,7 +11,6 @@ def main():
     ViewContacts(contacts) 
    elif command == 3:
     AddContacts(contacts)
-   
    elif command == 4:
     DeleteContact(contacts)
    elif command == 5:
@@ -75,13 +74,13 @@ def ViewContacts(contacts):
   if name == "x":
    print("Viewing of contacts was cancelled")
    break
-  
   for contact in contacts:
    if contact['name'].lower().strip() == name:
     print(f"Name: {contact['name']}")
     print(f"Email: {contact['email']}")
     print(f"Phone: {contact['phone']}")
    
+  
 
 
 def DisplayMenu():
