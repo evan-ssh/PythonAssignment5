@@ -10,7 +10,8 @@ def main():
    YearlySummary(sales_data)
   elif command == 3:
    EditSales(sales_data)
- 
+  elif command == 4:
+   ViewSingleMonth(sales_data)
 def DisplayMenu():
  print("COMMAND MENU")
  print("1 - View monthly sales")
@@ -75,4 +76,19 @@ def EditSales(sales_data):
    else:
      print("Enter a valid abbreviation for the month you'd like to edit: ")
      break 
+   
+def ViewSingleMonth(sales_data):
+ while True:
+  ShowMonths(sales_data)
+  print()
+  view_month = input("Enter the month you'd like to view the data for (press x to exit viewing)").title()
+  if view_month == 'x':
+    break
+  for month in sales_data:
+   if month['month'] == view_month:
+    print(f"\nSales for the month of {view_month} is ${month['sales']}")
+    break
+   else:
+    print("Invaild month('Enter The Abbreviation')")
+    break
 main()
