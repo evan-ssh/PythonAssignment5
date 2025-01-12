@@ -49,11 +49,13 @@ def ShowMonths(sales_data):
   print()
 
 def YearlySummary(sales_data):
- print(f"{'Yearly Summary'}")
- value = sum(sales_data.values())
- average = value / len(sales_data)
- print(f"Yearly Total: {value}")
- print(f"Monthly: {average:.2f}")
+  
+ sales = [row['sales'] for row in sales_data]
+ total_yearly_sales = sum(sales)
+ average = total_yearly_sales / 12
+ print("SUMMARY\n")
+ print(f"Yearly Total: {total_yearly_sales}")
+ print(f"Monthly: {average:.2f}\n")
 
 def EditSales(sales_data):
  while True:
