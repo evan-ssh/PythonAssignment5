@@ -43,6 +43,7 @@ def ListSales(sales_data):
   print(f"{row['month']}-{row['sales']}")
 
 def ShowMonths(sales_data):
+  print(f"{'month':>26}")
   for row in sales_data:
     print(f"{row['month']}", end="")
   print()
