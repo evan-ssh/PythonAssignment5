@@ -14,13 +14,16 @@ def main():
    ViewSingleMonth(sales_data)
   elif command == 5:
    HighestEarnings(sales_data)
+  elif command == 6:
+   LowestEarnings(sales_data)
 def DisplayMenu():
  print("COMMAND MENU")
- print("1 - View monthly sales")
- print("2 - View yearly summary")
- print("3 - Edit sales for a month")
- print("4 - View a single month")
+ print("1 - View Monthly sales")
+ print("2 - View Yearly Summary")
+ print("3 - Edit Sales For a Month")
+ print("4 - View a Single Month")
  print("5 - View Best Month")
+ print("6 - View Worst Month")
  print(" - Exit program")
 
 def LoadSales(filename = "monthly_sales.csv"):
@@ -101,4 +104,12 @@ def HighestEarnings(sales_data):
  highest_month = [row['month'] for row in sales_data if row['sales'] == highest_sale]
  for month in highest_month:
   print(f"\n{month} is the best performing month with a total of ${highest_sale}")
+
+def LowestEarnings(sales_data):
+ lowest_sale = min([row['sales'] for row in sales_data])
+ lowest_month = [row['month'] for row in sales_data if row['sales'] == lowest_sale]
+ for month in lowest_month:
+  print(f"\n{month} is the worst performing month with a total of ${lowest_sale}")
+
+
 main()
