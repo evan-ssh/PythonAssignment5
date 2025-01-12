@@ -98,7 +98,7 @@ def ViewSingleMonth(sales_data):
 
 def HighestEarnings(sales_data):
  highest_sale = max([row['sales'] for row in sales_data])
- highest_month = [row['month'] for row in sales_data]
+ highest_month = [row['month'] for row in sales_data if row['sales'] == highest_sale]
  for month in highest_month:
   print(f"\n{month} is the best performing month with a total of ${highest_sale}")
 main()
