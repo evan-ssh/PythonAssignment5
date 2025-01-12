@@ -30,12 +30,11 @@ def LoadSales(filename = "monthly_sales.csv"):
    print(f"File wasn't found check the programs directory")
   except Exception as e:
    print(f"An error occured while loading the file: {e}")
-
   return sales_data
 
 def ListSales(sales_data):
- for key, value in sales_data.items():
-  print(f"{key}-{value}")
+ for row in sales_data:
+  print(f"{row['month']}-{row['sales']}")
 
 def YearlySummary(sales_data):
  print(f"{'Yearly Summary'}")
