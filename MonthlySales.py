@@ -108,7 +108,7 @@ def ViewSingleMonth(sales_data):
     print(f"\nSales for the month of {view_month} is ${month['sales']}")
     break
   else:
-   print("Invaild month('Enter The Abbreviation')")
+   print("Invalid month('Enter The Abbreviation')")
    continue
 
 def HighestEarnings(sales_data):
