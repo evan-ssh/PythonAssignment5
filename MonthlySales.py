@@ -3,19 +3,30 @@ def main():
  while True: 
   sales_data = LoadSales()
   DisplayMenu()
-  command = int(input("Enter a command:"))
-  if command == 1:
-   ListSales(sales_data)
-  elif command == 2:
-   YearlySummary(sales_data)
-  elif command == 3:
-   EditSales(sales_data)
-  elif command == 4:
-   ViewSingleMonth(sales_data)
-  elif command == 5:
-   HighestEarnings(sales_data)
-  elif command == 6:
-   LowestEarnings(sales_data)
+  try:
+   command = int(input("\nEnter a command:"))
+   if command < 1 or command > 8:
+    print("\nEnter a valid command!\n")
+   if command == 1:
+    ListSales(sales_data)
+   elif command == 2:
+    YearlySummary(sales_data)
+   elif command == 3:
+    EditSales(sales_data)
+   elif command == 4:
+    ViewSingleMonth(sales_data)
+   elif command == 5:
+    HighestEarnings(sales_data)
+   elif command == 6:
+    LowestEarnings(sales_data)
+   elif command == 7:
+    GoalReached(sales_data)
+   elif command == 8:
+    print("Terminating Program, GOODBYE!")
+    return False
+  except ValueError:
+   print("Enter a valid command!")
+
 def DisplayMenu():
  print("COMMAND MENU")
  print("1 - View Monthly sales")
@@ -24,7 +35,8 @@ def DisplayMenu():
  print("4 - View a Single Month")
  print("5 - View Best Month")
  print("6 - View Worst Month")
- print(" - Exit program")
+ print("7 - See If Goal Was Reached")
+ print("8 - Exit program")
 
 def LoadSales(filename = "monthly_sales.csv"):
   sales_data = []
@@ -111,5 +123,9 @@ def LowestEarnings(sales_data):
  for month in lowest_month:
   print(f"\n{month} is the worst performing month with a total of ${lowest_sale}")
 
-
+def GoalReached(sales_data):
+ company_goal = float(input("\nEnter Companies Goal: "))
+ total_of_sales = sum([row['sales'] for row in sales_data])
+ compare_goal = company_goal / total_of_sales * 100
+ print(f"Company hit %{compare_goal:.2f} of the targeted goal\n")
 main()
